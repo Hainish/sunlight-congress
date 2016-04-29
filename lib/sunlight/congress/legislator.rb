@@ -10,6 +10,8 @@ class Sunlight::Congress::Legislator
   def self.by_zipcode(zipcode)
     uri = URI("#{Sunlight::Congress::BASE_URI}/legislators/locate?zip=#{zipcode}&apikey=#{Sunlight::Congress.api_key}")
 
+    puts "SHOW ME STUFF"
+    puts JSON.load(Net::HTTP.get(uri))
     JSON.load(Net::HTTP.get(uri))["results"].collect{|json| new(json) }
   end
 
